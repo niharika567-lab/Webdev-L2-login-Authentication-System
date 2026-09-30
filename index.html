@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cipher Vault – Authentication System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="4" y="14" width="24" height="15" rx="4" fill="var(--acc)"/><path d="M10 14v-4a6 6 0 0 1 12 0v4" fill="none" stroke="var(--acc)" stroke-width="3"/><circle cx="16" cy="21" r="2.5" fill="var(--acc-ink)"/></svg>
+    Cipher Vault
+  </div>
+
+  <!-- REGISTER -->
+  <section id="v-register" class="view card">
+    <h1>Create your vault</h1>
+    <p class="sub">Your unique identicon is generated from your password hash.</p>
+    <form id="fReg" novalidate>
+      <label for="rId">Username or email</label>
+      <input id="rId" autocomplete="username" placeholder="you@example.com">
+      <div class="fe" id="eRId"></div>
+      <label for="rPw">Password</label>
+      <div class="pw"><input id="rPw" type="password" autocomplete="new-password" placeholder="Min 8 chars, 1 number"><button type="button" data-toggle="rPw">Show</button></div>
+      <div class="meter"><i id="meter"></i></div>
+      <div class="rules"><span id="rl-len">8+ characters</span><span id="rl-num">1 number</span><span id="rl-mix">upper &amp; lower</span><span id="rl-sym">symbol</span></div>
+      <div class="fe" id="ePw"></div>
+      <button class="btn" id="bReg">Register</button>
+      <div class="msg" id="mReg"></div>
+    </form>
+    <div class="alt">Already have a vault? <a href="#/login">Login</a></div>
+  </section>
+
+  <!-- LOGIN -->
+  <section id="v-login" class="view card">
+    <h1>Unlock your vault</h1>
+    <p class="sub">Welcome back. Enter your credentials.</p>
+    <form id="fLog" novalidate>
+      <label for="lId">Username or email</label>
+      <input id="lId" autocomplete="username">
+      <div class="fe" id="eLId"></div>
+      <label for="lPw">Password</label>
+      <div class="pw"><input id="lPw" type="password" autocomplete="current-password"><button type="button" data-toggle="lPw">Show</button></div>
+      <div class="fe" id="eLPw"></div>
+      <button class="btn" id="bLog">Login</button>
+      <div class="msg" id="mLog"></div>
+    </form>
+    <div class="alt">New here? <a href="#/register">Register</a></div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="v-dashboard" class="view card">
+    <div class="id"><div id="ident"></div><div><h1 id="dName">Member</h1><small id="dSince"></small></div></div>
+    <div class="timer"><span>Session expires in</span><b id="dTimer">--:--</b></div>
+    <strong>Your stored record</strong>
+    <pre id="dRec"></pre>
+    <p class="sub" style="margin-top:8px">The password itself is never stored – only a salted hash.</p>
+    <strong>Security checks passed</strong>
+    <ul class="chk"><li>Password stored as salted PBKDF2-SHA-256 hash</li><li>Unique random salt per user</li><li>Session token with automatic expiry</li><li>Route guard blocks direct access</li></ul>
+    <button class="btn ghost" id="bOut">Logout</button>
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
